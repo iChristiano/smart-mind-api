@@ -17,18 +17,18 @@ const handleRegister = (req, res, db, bcrypt) => {
                     .returning('*')
                     .insert({
                         name: name,
-                        email: loginEmail[0],
+                        email: loginEmail[0].email,
                         joined: new Date()
                     })
                     .then(user => {
                         delete user[0].email;
                         res.json(user[0]);
                     })
-                    .catch((err) => res.status(400).json('Unable to register'));
             })
             .then(trx.commit)
             .catch(trx.rollback)
-        });
+        })
+        .catch((err) => res.status(400).json('Unable to register'));
     }
 };
 
