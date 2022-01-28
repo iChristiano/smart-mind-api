@@ -9,14 +9,15 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-// connect database
-const knexConfig = {
-    client: 'pg',
-    connection: {
-      connectionString: process.env.DATABASE_URL,
-      ssl: true
-    }
-  };
+// connect database heroku
+// const knexConfig = {
+//     client: 'pg',
+//     connection: {
+//       connectionString: process.env.DATABASE_URL,
+//       ssl: true
+//     }
+// };
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
 const knexConfigLocal = {
     client: 'pg',
@@ -26,7 +27,7 @@ const knexConfigLocal = {
       password: '',
       database: 'smart-mind'
     }
-  };
+};
 
 const db = knex(knexConfigLocal);
 
